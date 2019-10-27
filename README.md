@@ -2,7 +2,7 @@
 
 * Lab01 - [Setup](Lab01/README.md)
 * Lab02 - [Produce and Consume Messages to a Kafka Stream with Kafka Console Tools](Lab02/README.md)
-* Lab03 - Produce and Consume Messages to a Kafka Stream with Spring Boot
+* Lab03 - [Produce and Consume Messages to a Kafka Stream with Spring Boot](Lab02/README.md)
 * Lab04 - [Using the Admin API](Lab04/README.md)
 * Lab05 - [Using the Event Streams CLI Plugin](Lab05/README.md)
 
