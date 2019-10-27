@@ -10,6 +10,7 @@
 
 * Produce and Consume a Continuous Event Stream,
 * Connectors, https://ibm.github.io/event-streams/connectors/
+* Add vim instructions to Lab03
 
 # References
 
