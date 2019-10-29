@@ -28,8 +28,13 @@ The Apache Kafka console tools ship with the Apache Kafka distribution and can b
 	$ cd kafka_2.12-2.3.0
 	```
 
-* Create a new properties file called mykafka.properties, and for USER and PASSWORD use the values from the Event Streams service credentials,
-  
+* Create a new properties file called 'mykafka.properties', 
+
+    ```console
+    $ vi mykafka.properties
+    ```
+
+* For USER and PASSWORD use the values from the Event Streams service credentials,
 
 	```text
 	sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="USER" password="PASSWORD";
