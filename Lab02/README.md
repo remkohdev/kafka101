@@ -10,12 +10,15 @@ The Apache Kafka console tools ship with the Apache Kafka distribution and can b
 * Download the Source Download, e.g. version 2.3.0
 * Unzip the source code to your working directory, e.g. /userdata
 
+    ```console
+    $ tar -xvzf kafka-2.3.0-src.tgz
+    ```
+
 ## Lab
 
 * Browse to the bin directory
 
 	```console
-	$ tar -xvzf kafka-2.3.0-src.tgz
 	$ cd kafka-2.3.0-src/bin
 	```
 
