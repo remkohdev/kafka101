@@ -2,11 +2,16 @@
 
 See also https://ibm.github.io/event-streams/tutorials/kafka-streams-app/
 
-The Apache Kafka console tools ship with the Apache Kafka distribution and can be found in the bin directory of the Kafka download. 
+The Apache Kafka console tools ship with the Apache Kafka distribution and can be found in the bin directory of the Kafka download. If you have already downloaded Kafka, skip to the Lab section.
+
+## Download
 
 * Go to http://kafka.apache.org/downloads
 * Download the Source Download, e.g. version 2.3.0
-* Unzip the source code to your working directory, e.g. /data
+* Unzip the source code to your working directory, e.g. /userdata
+
+## Lab
+
 * Browse to the bin directory
 
 	```console
