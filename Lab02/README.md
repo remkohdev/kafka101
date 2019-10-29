@@ -19,7 +19,7 @@ The Apache Kafka console tools ship with the Apache Kafka distribution and can b
 * Browse to the bin directory
 
 	```console
-	$ cd kafka-2.3.0-src/bin
+	$ cd kafka_2.12-2.3.0/bin
 	```
 
 * Create a new properties file called mykafka.properties, and for USER and PASSWORD use the values from the Event Streams service credentials,
