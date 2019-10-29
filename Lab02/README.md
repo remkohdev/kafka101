@@ -19,6 +19,12 @@ The Apache Kafka console tools ship with the Apache Kafka distribution and can b
 * Browse to the bin directory
 
 	```console
+	$ ls -al 
+	total 16
+        drwxr-xr-x 1 root root 4096 Oct 29 19:43 .
+        drwxr-xr-x 1 root root 4096 Oct 29 22:12 ..
+        drwxr-xr-x 6 root root 4096 Oct  1 16:45 istio-1.3.2
+        drwxr-xr-x 6 root root 4096 Jun 19 20:44 kafka_2.12-2.3.0
 	$ cd kafka_2.12-2.3.0/bin
 	```
 
