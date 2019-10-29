@@ -42,6 +42,13 @@ Then initialize the Event Streams plugin,
 
 	```console
 	$ ibmcloud es init
+	
+	Select an Event Streams instance:
+        1. acct-eventstreams-user1
+        2. acct-eventstreams-user2
+        3. acct-eventstreams-user3
+        Enter a number> 3
+
 	API Endpoint: 	https://123abc4d5efgh67i.svc01.us-south.eventstreams.cloud.ibm.com
 	OK
 	```
