@@ -4,6 +4,8 @@ To setup a managed instance of Apache Kafka on IBM Cloud, create an IBM Event St
 
 IBM Event Streams is a managed service of an Apache Kafka instance on IBM Cloud. IBM Event Streams is a high-throughput message bus built on Apache Kafka, supporting all Kafka APIs and optimized for event ingestion and event stream distribution on IBM Cloud.
 
+If you already have installed the Event Streams plugin and are logged into IBM Cloud, jump to "Initialize the Event Streams Service".
+
 ## Install the Event Streams plugin
 
 Assuming the IBM Cloud Developer Tools CLI is already installed, add the plugin for Event Streams,
@@ -33,6 +35,8 @@ To initialize the Event Streams plugin, first login to IBM Cloud,
 	$ ibmcloud login -a cloud.ibm.com -r us-south -g Default -u <username> -p <password> 
 	$ ibmcloud target --cf
 	```
+
+### Initialize the Event Streams Service
 
 Then initialize the Event Streams plugin,
 
