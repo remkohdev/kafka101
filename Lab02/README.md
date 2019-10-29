@@ -34,7 +34,8 @@ The Apache Kafka console tools ship with the Apache Kafka distribution and can b
     $ vi mykafka.properties
     ```
 
-* For USER and PASSWORD use the values from the Event Streams service credentials,
+* Press the 'i' key to enable INSERT mode,
+* Copy-paste the following properties, for 'USER' and 'PASSWORD' use the values from the Event Streams service credentials,
 
 	```text
 	sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="USER" password="PASSWORD";
@@ -45,6 +46,7 @@ The Apache Kafka console tools ship with the Apache Kafka distribution and can b
 	ssl.endpoint.identification.algorithm=HTTPS
 	```
 
+* Press the ESC key to exit INSERT mode, and :wq to write and quit vi,
 * First, run the producer, for --broker-list use the kafka_brokers_sasl list from the Event Streams service credentials,
 
 	```console
