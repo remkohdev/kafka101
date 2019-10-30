@@ -31,7 +31,16 @@ If you have the Spring Boot CLI already installed, skip to the "Create a Spring 
 	$ spring init --list
 	```
 
-* Edit the file src/main/resources/application.properties, and add the following common Spring Boot properties to configure Kafka,
+* Edit the file src/main/resources/application.properties, 
+
+    ```console
+    $ vi src/main/resources/application.properties
+    ```
+
+* Press the 'i' key to enable INSERT mode,
+* Add the following common Spring Boot properties to configure Kafka,
+* Replace <password> with the password from the Event Streams credentials,
+* Replace <brokerlist> with the 'kafka_brokers_sasl' from the Event Streams credentials, remove the quotes and newlines,
 
 	```text
 	# Spring server config
@@ -42,8 +51,8 @@ If you have the Spring Boot CLI already installed, skip to the "Create a Spring 
 	spring.kafka.jaas.enabled=true
 	spring.kafka.jaas.login-module=org.apache.kafka.common.security.plain.PlainLoginModule
 	spring.kafka.jaas.options.username=token
-	spring.kafka.jaas.options.password=1abCDEFgHi2jKlmnO3pqrsTU4VwXyzaBcdeFgHiJkLmN
-	spring.kafka.bootstrap-servers=broker-1-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,broker-2-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,broker-3-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,broker-4-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,broker-5-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,broker-6-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999
+	spring.kafka.jaas.options.password=<password>
+	spring.kafka.bootstrap-servers=<brokerlist>
 	spring.kafka.properties.security.protocol=SASL_SSL
 	spring.kafka.properties.sasl.mechanism=PLAIN
 	spring.kafka.ssl.protocol=TLSv1.2
@@ -62,7 +71,9 @@ If you have the Spring Boot CLI already installed, skip to the "Create a Spring 
 	spring.kafka.consumer.value-deserializer=org.apache.kafka.common.serialization.StringDeserializer
 	```
 
-* The Kafka connection properties can be configured using the Service credentials created for the IBM Event Streams service on IBM Cloud. Go to the dashboard of the IBM Event Streams service, go to the Service credentials page, and click View credentials,
+* Press the ESC key to exit the INSERT mode, and type ':wq' to write and quit 'vi',
+
+* The Kafka connection properties above can be configured using the Service credentials created for the IBM Event Streams service on IBM Cloud. Go to the dashboard of the IBM Event Streams service, go to the Service credentials page, and click View credentials,
 
 	```json
 	{
@@ -88,11 +99,19 @@ If you have the Spring Boot CLI already installed, skip to the "Create a Spring 
 	}
 	```
 
-* The bootstrap-servers in the properties are set to the kafka_brokers_sasl in the credentials. 
-* Add a new file src/main/java/com/example/springbootkafkaapp/EventsStreamController.java and add the following code,
-package com.example.springbootkafkaapp;
+* The bootstrap-servers in the properties are set to the 'kafka_brokers_sasl' in the credentials. 
+* Add a new file src/main/java/com/example/springbootkafkaapp/EventsStreamController.java,
+
+    ```console
+    $ vi src/main/java/com/example/springbootkafkaapp/EventsStreamController.java
+    ```
+  
+* Press the 'i' key to enable INSERT mode,
+* Add the following code,
 
 	```java
+	package com.example.springbootkafkaapp;
+	
 	import org.apache.kafka.clients.consumer.ConsumerRecord;
 	import org.slf4j.Logger;
 	import org.slf4j.LoggerFactory;
@@ -133,6 +152,8 @@ package com.example.springbootkafkaapp;
 	}
 	```
 
+* Press the ESC key to exit the INSERT mode, and type ':wq' to write and quit 'vi',
+
 * For the original code example see the Spring Boot guide's an Even Quicker with Spring Boot example.
 * Clean, Install and Run the application,
 
@@ -141,6 +162,7 @@ package com.example.springbootkafkaapp;
 	$ mvn spring-boot:run
 	```
 
+* Open a new terminal window,
 * Test the Spring Boot Kafka client and the IBM Event Streams connection,
 
 	```console
