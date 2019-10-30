@@ -78,19 +78,13 @@ The Apache Kafka console tools ship with the Apache Kafka distribution and can b
 	```
 
 * Note, the prompt that is displayed on the last line after the log output for loading the producer, once the consumer is running, you can enter messages to publish to the Kafka event stream that is consumed in real time,
-* Next, run the consume, for --broker-list use the kafka_brokers_sasl list from the Event Streams service credentials,
+* Next, run the consume, for --broker-list use the kafka_brokers_sasl list from the Event Streams service credentials, as you did with the producer,
 
 	```console
-	$ bash kafka-console-consumer.sh --bootstrap-server broker-1-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,
-	broker-2-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,
-	broker-3-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,
-	broker-4-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,
-	broker-5-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,
-	broker-6-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999 
-	--consumer.config ../mykafka.properties --topic greetings
+	$ bash kafka-console-consumer.sh --bootstrap-server <brokerlist> --consumer.config mykafka.properties --topic greetings
 	```
 
-* Now that the producer and consumer are both running, publish a message to the event stream, by entering text on the prompt,
+* Now that the producer and consumer are both running, publish a message to the event stream, by entering text on the prompt of the producer,
 
 	```console
 	> hello1
@@ -111,7 +105,7 @@ Consumers can be labeled with a consumer group name, so that each record publish
 * Add a --group 1 flag to label a consumer,
 
 	```console
-	$ bash kafka-console-consumer.sh --bootstrap-server broker-1-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,
+	$ bash bin/kafka-console-consumer.sh --bootstrap-server broker-1-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,
 	broker-2-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,
 	broker-3-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,
 	broker-4-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,
