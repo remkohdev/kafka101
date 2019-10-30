@@ -35,10 +35,10 @@ The Apache Kafka console tools ship with the Apache Kafka distribution and can b
     ```
 
 * Press the 'i' key to enable INSERT mode,
-* Copy-paste the following properties, for 'USER' and 'PASSWORD' use the values from the Event Streams service credentials,
+* Copy-paste the following properties, user 'token' for 'username' and for 'PASSWORD' use the 'password' value from the Event Streams service credentials,
 
 	```text
-	sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="USER" password="PASSWORD";
+	sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="token" password="PASSWORD";
 	security.protocol=SASL_SSL
 	sasl.mechanism=PLAIN
 	ssl.protocol=TLSv1.2
@@ -47,10 +47,16 @@ The Apache Kafka console tools ship with the Apache Kafka distribution and can b
 	```
 
 * Press the ESC key to exit INSERT mode, and :wq to write and quit vi,
-* First, run the producer, for --broker-list use the kafka_brokers_sasl list from the Event Streams service credentials,
+* First, run the producer, 
+
+    ```console
+    $ bash bin/kafka-console-producer.sh --broker-list <brokerlist> --producer.config mykafka.properties --topic greetings
+    ```
+
+* for --broker-list use the kafka_brokers_sasl list from the Event Streams service credentials, e.g. 
 
 	```console
-	$ bash kafka-console-producer.sh --broker-list broker-1-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,
+	$ bash bin/kafka-console-producer.sh --broker-list broker-1-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,
 	broker-2-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,
 	broker-3-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,
 	broker-4-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,
