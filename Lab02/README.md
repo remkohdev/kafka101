@@ -102,18 +102,16 @@ The Apache Kafka console tools ship with the Apache Kafka distribution and can b
 
 Consumers can be labeled with a consumer group name, so that each record published to a topic is delivered to one consumer instance within a subscribing consumer group,
 
+* Open 3 new terminals, 
+* In the first 2 terminals, run a consumer instance that is a member of group 1,
+* In the last terminal, run a consumer instance that is a member of group 2,
 * Add a --group 1 flag to label a consumer,
 
 	```console
-	$ bash bin/kafka-console-consumer.sh --bootstrap-server broker-1-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,
-	broker-2-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,
-	broker-3-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,
-	broker-4-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,
-	broker-5-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,
-	broker-6-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999 
-	--consumer.config ../mykafka.properties --topic greetings --group 1
+	$ bash bin/kafka-console-consumer.sh --bootstrap-server <brokerlist> 
+	--consumer.config mykafka.properties --topic greetings --group 1
 	```
 
 * Run the same command in a new terminal tab, to create a second consumer with the same label --group 1,
-* Publish messages to the topic greetings,
-* You will see 1 consumer in the group consume each message,
+* Produce a message to the topic greetings, e.g. "saying hello to groups only once",
+* You should see that only 1 consumer in group 1 and the single consumer in group 2, consume the message once per group,
