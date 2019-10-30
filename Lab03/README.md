@@ -7,12 +7,16 @@ The Spring Framework supports the following dependencies we will use in a Spring
 * `kafka` to publish, subscribe, store, and process streams of records.
 * `kafka-streams` to build stream processing applications with Apache Kafka Streams.
 
-* Install the Spring Boot CLI,
+If you have the Spring Boot CLI already installed, skip to the "Create a Spring App" section.
+
+* On Mac, install the Spring Boot CLI using Homebrew,
 
 	```console
 	$ brew tap pivotal/tap 
 	$ brew install springboot
 	```
+
+## Create a Spring App
 
 * Create a new Spring Boot application with dependencies for web, data-rest, kafka, and kafka-streams.
 
