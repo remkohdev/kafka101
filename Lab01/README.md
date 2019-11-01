@@ -1,6 +1,6 @@
 # Setup
 
-To setup a managed instance of Apache Kafka on IBM Cloud, create an IBM Event Streams service on IBM Cloud.
+For this lab you need a managed instance of Apache Kafka on IBM Cloud. We already created an IBM Event Streams Service on IBM Cloud for you. An 
 
 IBM Event Streams is a managed service of an Apache Kafka instance on IBM Cloud. IBM Event Streams is a high-throughput message bus built on Apache Kafka, supporting all Kafka APIs and optimized for event ingestion and event stream distribution on IBM Cloud.
 
@@ -8,73 +8,82 @@ If you already have installed the Event Streams plugin and are logged into IBM C
 
 ## Install the Event Streams plugin
 
-Assuming the IBM Cloud Developer Tools CLI is already installed, add the plugin for Event Streams,
-
-	```console
-	$ ibmcloud plugin install event-streams
-	Looking up 'event-streams' from repository 'IBM Cloud'...
-	Plug-in 'event-streams 2.0.0' found in repository 'IBM Cloud'
-	Attempting to download the binary file...
-	30.95 MiB / 30.95 MiB [===========================================] 100.00% 17s
-	32455568 bytes downloaded
-	Installing binary...
-	OK
-	Plug-in 'event-streams 2.0.0' was successfully installed into /Users/user1/.bluemix/plugins/event-streams. 
-	Use 'ibmcloud plugin show event-streams' to show its details.
-	```
+The IBM Cloud Developer Tools CLI and the plugin for Event Streams are pre-installed in your web-terminal container,
 
 List the plugins,
 
-	```console
-	$ ibmcloud plugin list
-	```
+```shell
+$ ibmcloud plugin list
+Listing installed plug-ins...
 
-To initialize the Event Streams plugin, first login to IBM Cloud,
+Plugin Name                            Version   Status   
+cloud-functions/wsk/functions/fn       1.0.35       
+cloud-object-storage                   1.1.0        
+container-registry                     0.1.437      
+container-service/kubernetes-service   0.4.42       
+dev                                    2.4.0        
+event-streams                          2.0.0 
+```
 
-	```console
-	$ ibmcloud login -a cloud.ibm.com -r us-south -g Default -u <username> -p <password> 
-	$ ibmcloud target --cf
-	```
+If for some reason, the Event Streams plugin is not listed, install it as follow,
+
+```shell
+$ ibmcloud plugin install event-streams
+Looking up 'event-streams' from repository 'IBM Cloud'...
+Plug-in 'event-streams 2.0.0' found in repository 'IBM Cloud'
+Attempting to download the binary file...
+30.95 MiB / 30.95 MiB [===========================================] 100.00% 17s
+32455568 bytes downloaded
+Installing binary...
+OK
+Plug-in 'event-streams 2.0.0' was successfully installed into /Users/user1/.bluemix/plugins/event-streams. 
+Use 'ibmcloud plugin show event-streams' to show its details.
+```
 
 ### Initialize the Event Streams Service
 
-Then initialize the Event Streams plugin,
+In order to initialize the Event Streams plugin and connect to your Event Streams Service instance, you must be logged in to IBM Cloud.
 
-	```console
-	$ ibmcloud es init
-	
-	Select an Event Streams instance:
-        1. acct-eventstreams-user1
-        2. acct-eventstreams-user2
-        3. acct-eventstreams-user3
-        Enter a number> 3
+Check that you are logged in and connected to the IBM Cloud.
 
-	API Endpoint: 	https://123abc4d5efgh67i.svc01.us-south.eventstreams.cloud.ibm.com
-	OK
-	```
+```shell
+$ ibmcloud target
+```
+
+You should see the targeted region, account, resource group, org and space of your connection.
+
+Then initialize the Event Streams plugin to connect to your Event Streams Service instance. Use the `Event Streams Service Name` that you were assigned and given for this workshop. If you followed the Get Started instructions in the AppModernization/lab2 repository, you should have set an environment variable `ES_SVC_NAME`.
+
+```shell
+$ echo $ES_SVC_NAME
+```
+
+If no Event Streams Service name is returned, set it now, e.g.
+
+```shell
+$ ES_SVC_NAME=accountname-eventstreams-user8888
+```
+
+Initialize the Event Streams Service plugin,
+
+```console
+$ ibmcloud es init -i $ES_SVC_NAME
+
+API Endpoint: 	https://123abc4d5efgh67i.svc01.us-south.eventstreams.cloud.ibm.com
+OK
+```
 
 ## Using the IBM Cloud Developer Tools CLI and Event Streams plugin
 
-* Create an instance of the IBM Event Streams service,
+* List all topics,
 
-	```console
-	$ ibmcloud resource service-instance-create user1-eventstreams messagehub standard us-south
-	Creating service instance remkohdev-eventstreams in resource group default of account USER1's Account as user1@email.com...
+	```shell
+	$ ibmcloud es topics
 	OK
-	Service instance user1-eventstreams was created.
-					
-	Name:         user1-eventstreams   
-	ID:           crn:v1:bluemix:public:messagehub:us-south:a/1ab2c3de456789fg01h23i4j5k6l78mn:12a34bc5-de67-8f9g-h012-34i567jk8901::   
-	GUID:         12a34bc5-de67-8f9g-h012-34i567jk8901   
-	Location:     us-south   
-	State:        active   
-	Type:         service_instance   
-	Sub Type:        
-	Created at:   2019-10-17T15:04:16Z   
-	Updated at:   2019-10-17T15:04:16Z
+	No topics found.
 	```
-
-* Create a new topic called `greetings`,
+	
+* Create a new topic called `greetings` with 1 partition,
 
 	```console
 	$ ibmcloud es topic-create greetings --partitions 1
@@ -82,45 +91,30 @@ Then initialize the Event Streams plugin,
 	OK
 	```
 
+* It may take a little while before the topic is created,
+
+* Display details of the topic called `greetings`,
+
+	```shell
+	$ ibmcloud es topic greetings
+	Details for topic greetings
+	Topic name   Internal?   Partition count   Replication factor   
+	greetings    false       1                 3   
+
+	Partition details for topic greetings
+	Partition ID   Leader   Replicas   In-sync   
+	0              2        [2 0 1]    [2 0 1]   
+
+	Configuration parameters for topic greetings
+	Name                  Value   
+	cleanup.policy        delete   
+	min.insync.replicas   2   
+	segment.bytes         536870912   
+	retention.ms          86400000   
+	retention.bytes       104857600   
+	OK
+	```
+
 For more details about using the Event Streams CLI Plugin, see [Lab05](../Lab05/README.md).
 
-## Using the IBM Cloud UI
-
-To setup an Apache Kafka instance on IBM Cloud:
-* Go to the IBM Cloud Catalog,
-* Search the catalog for Kafka or Event Streams,
-* Click the Event Streams service,
-* Click the Create button,
-
-	![Create IBM Event Streams](../images/eventstreams-kafka-dashboard.png)
-
-* Go to the Service credentials page,
-* Click the New credential button,
-* Name the credential <username>-eventstreams-kafka-servicecredentials-1, 
-
-	![Add service credentials](../images/eventstreams-service-credentials.png)
-
-* Click the Add button,
-* You will need the service credentials to the Event Streams service to access the Kafka server,
-
-Next, create a topic:
-* Go to the Manage page to return to the service dashboard,
-* Click the Create a topic pane, or go to the Topics tab and click the Create topic button,
-
-	![Add service credentials](../images/eventstreams-create-topic.png)
-
-* For Topic name enter greetings,
-* Click Next,
-* Keep the value for Partitions to 1,
-* Click Next,
-* Set Message Retention to A day,
-* Click Create topic,
-* A message will popup
-  
-  ```text
-  Topic creation requested 
-  A request to create topic 'greetings' has been made.
-  ```
-
-* It may take a while before the topic is created,
 
