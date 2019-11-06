@@ -149,14 +149,15 @@ Consumers can be labeled with a consumer group name, so that each record publish
 
 * Copy the list to the clipboard,
 * Open 3 new browser tabs and run your terminal in each,
-* You lost the context of your original terminal, so we need to set the $KAFKA_BROKERS_SASL variable again in all 3 new terminals,
+
+* In the new terminals, you lost the context of your original terminal, so we need to set the $KAFKA_BROKERS_SASL variable again in all 3 new terminals,
 * In each new web-terminal,
 
 	```shell
 	$ cd kafka_2.12-2.3.0
 	$ KAFKA_BROKERS_SASL="[broker-1-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams. cloud.ibm.com:9999,broker-2-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999, broker-3-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999, broker-4-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999, broker-5-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999, broker-6-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999]"
 	```
-
+* Note that if the container is restarted the Kafka properties file will have to be recreated, as we have not yet added Persistent Volumes. Check to make sure the kafka.properties file still exists.
 * In the first 2 new terminals, run a consumer instance that is a member of group 1, add a --group 1 flag to label a consumer,
 
 	```console
