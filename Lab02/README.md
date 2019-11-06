@@ -19,6 +19,13 @@ The Source Download, e.g. version 2.3.0, has been already downloaded and install
 	$ cd kafka_2.12-2.3.0
 	```
 
+* Find your service,
+
+	```console
+	$ ibmcloud resource service-instances | grep $ES_SVC_NAME
+	$ ibmcloud resource service-instance $ES_SVC_NAME
+	```
+	
 * You will create a Kafka configuration file first. But we need the Kafka service credentials to set the Kafka configuration,
 
 	```shell
