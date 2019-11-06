@@ -26,10 +26,16 @@ The Source Download, e.g. version 2.3.0, has been already downloaded and install
 	$ ibmcloud resource service-instance $ES_SVC_NAME
 	```
 	
+* Find your service credentials,
+
+	```console
+	$ ibmcloud resource service-keys | grep <usernumber>
+	```
+	
 * You will create a Kafka configuration file first. But we need the Kafka service credentials to set the Kafka configuration,
 
 	```shell
-	$ ibmcloud resource service-key "${ES_SVC_NAME}-credentials1"
+	$ ibmcloud resource service-key "${ES_SVC_NAME}credentials1"
 	Retrieving service key account-eventstreams-user8888-credentials1 in resource group workshop-nov2019 under account Account as me@email.com...
                   
 Name:          account-eventstreams-user8888-credentials1   
