@@ -1,5 +1,7 @@
 # Lab05 - Using the Event Streams CLI Plugin
 
+The following commands are for review. If you are following the workshop, be mindful not to run any create, update or delete commands.
+
 * List the Event Streams CLI Plugin commands,
 
 	```console
