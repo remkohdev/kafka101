@@ -1,17 +1,36 @@
 # Lab04 - Using the Admin API
 
-Go to the Service credentials page and View credentials. To access the Kafka Admin API, use the value for property kafka_admin_url. The Swagger 2.0 docs for the IBM Event Streams Administration REST API is found at https://raw.githubusercontent.com/ibm-messaging/event-streams-docs/master/admin-rest-api/admin-rest-api.yaml. You can load the file via URL import in the http://editor.swagger.io, click File > Import URL > OK. Or read the README for the Admin API at https://github.com/ibm-messaging/event-streams-docs/tree/master/admin-rest-api.
+Retrieve the Event Streams credentials,
+
+```
+$ ibmcloud resource service-key "${ES_SVC_NAME}credentials1"
+```
+
+To access the Kafka Admin API, use the value for property kafka_admin_url.
+
+```
+# KAFKA_ADMIN_URL=https://abcdef1g2hi3456jk.svc02.us-south.eventstreams.cloud.ibm.com 
+```
+
+The Swagger 2.0 docs for the IBM Event Streams Administration REST API is found at https://raw.githubusercontent.com/ibm-messaging/event-streams-docs/master/admin-rest-api/admin-rest-api.yaml. You can load the file via URL import in the http://editor.swagger.io, click File > Import URL > OK. Or read the README for the Admin API at https://github.com/ibm-messaging/event-streams-docs/tree/master/admin-rest-api.
 
 To authenticate add an X-Auth-Token HTTP Header with the apikey found in the service credentials.
 
-To use the Admin API you need the full `kafka_admin_url` and the `apikey` from the `Service Credentials`. In the examples below, replace the placeholders for these properties with the values from the `Service Credentials` of your Event Streams service,
+```
+$ KAFKA_APIKEY=abCDEfGh12ijklm3noPQRsTUacEwP6TgbJ5uoLMrof3N
+```
+
+To use the Admin API you need these full `kafka_admin_url` and the `apikey` from the `Service Credentials`. In the examples below, replace the placeholders for these properties with the values from the `Service Credentials` of your Event Streams service,
 
 * List the Kafka topics,
-  
-	```console
-	$ curl -X GET \
-	https://<kafka_admin_url>/admin/topics \
-	-H 'X-Auth-Token: <apikey>'
+
+	```
+	$ curl -X GET "${KAFKA_ADMIN_URL}/admin/topics" -H "X-Auth-Token: ${KAFKA_APIKEY}"
+	```
+
+	will return
+
+	```
 	[
 		{
 			"name": "greetings",
@@ -45,13 +64,14 @@ To use the Admin API you need the full `kafka_admin_url` and the `apikey` from t
 * Delete a topic,
   
 	```console
-	$ curl -X DELETE \
-	https://<kafka_admin_url>/admin/topics/greetings \
-	-H 'X-Auth-Token: <apikey>'
-	Create a topic,
+	$ curl -X DELETE "${KAFKA_ADMIN_URL}/admin/topics/greetings" -H "X-Auth-Token: ${KAFKA_APIKEY}"
+	```
+
+* Create a topic,
+	```
 	$ curl -X POST \
-	https://<kafka_admin_url>/admin/topics \
-	-H 'X-Auth-Token: <apikey>' \
+	"${KAFKA_ADMIN_URL}/admin/topics" \
+	-H "X-Auth-Token: ${KAFKA_APIKEY}" \
 	-d '{
 	"name": "greetings",
 	"partitions": 1
@@ -62,16 +82,16 @@ To use the Admin API you need the full `kafka_admin_url` and the `apikey` from t
 
 	```console
 	$ curl -X GET \
-	https://<kafka_admin_url>/admin/topics/greetings \
-	-H 'X-Auth-Token: <apikey>'
+	"${KAFKA_ADMIN_URL}/admin/topics/greetings" \
+	-H "X-Auth-Token: ${KAFKA_APIKEY}"
 	```
 
-* Update a topic configuration,
+* Update a topic configuration, fyi this example will return with 'invalid for topic'...
 
 	```console
 	$ curl -X PATCH \
-	https://<kafka_admin_url>/admin/topics/greetings \
-	-H 'X-Auth-Token: <apikey>' \
+	"${KAFKA_ADMIN_URL}/admin/topics/greetings" \
+	-H "X-Auth-Token: ${KAFKA_APIKEY}" \
 	-d '{
 	"new_total_partition_count": 1
 	}'
