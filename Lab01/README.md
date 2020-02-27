@@ -117,4 +117,6 @@ OK
 
 For more details about using the Event Streams CLI Plugin, see [Lab05](../Lab05/README.md).
 
+Continue to [Lab02](../Lab02).
+
 
