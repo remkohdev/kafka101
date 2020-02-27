@@ -75,10 +75,10 @@ spring.kafka.consumer.value-deserializer=org.apache.kafka.common.serialization.S
 * List the Event Streams service credentials again,
 
 	```shell
-	$ ibmcloud resource service-key "${ES_SVC_NAME}-credentials1"
+	$ ibmcloud resource service-key "${ES_SVC_NAME}credentials1"
 	```
 
-* Copy the list of `kafka_brokers_sasl` WITHOUT the square brackets,
+* Copy the list of `kafka_brokers_sasl` WITHOUT the square brackets and replace the space separator by a commas,
 * Edit the file src/main/resources/application.properties, 
 
     ```console
@@ -172,3 +172,5 @@ public class EventsStreamController {
 	$ curl -X GET http://localhost:8080/received
 	[Hello1]
 	```
+
+Go to [Lab04](../Lab04).
