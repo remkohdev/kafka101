@@ -61,7 +61,7 @@ $ echo $ES_SVC_NAME
 If no Event Streams Service name is returned, set it now, e.g.
 
 ```shell
-$ ES_SVC_NAME=accountname-eventstreams-user8888
+$ ES_SVC_NAME=<accountname>esuser<user number>
 ```
 
 Initialize the Event Streams Service plugin,
