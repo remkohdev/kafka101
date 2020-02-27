@@ -62,10 +62,10 @@ Credentials:
                user:                     token 
 	```
 
-* First thing, for later use, create an environment variable $KAFKA_BROKERS_SASL and set it to the complete Array value, including the square brackets and enclosed by double quotes, of the `kafka_brokers_sasl` property in the service credentials,
+* First thing, for later use, create an environment variable $KAFKA_BROKERS_SASL. Set the value to the complete Array value of `kafka_brokers_sasl` property in the service credentials, but replace the space separator by a comma separator, remove the square brackets, do not enclose the array by double or single quotes,
 
 	```shell
-	$ KAFKA_BROKERS_SASL="[broker-1-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,broker-2-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999, broker-3-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999, broker-4-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999, broker-5-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999, broker-6-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999]"
+	$ KAFKA_BROKERS_SASL=broker-1-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999,broker-2-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999, broker-3-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999, broker-4-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999, broker-5-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999, broker-6-a1bc2d3efg4hijkl.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9999
 	```
 
 * Next, we need the `username` (always set to `token`) and `password` of your Kafka or Event Streams instance,
@@ -102,8 +102,7 @@ Now you are ready to run the producer and publish messages to the Kafka messages
 * First, run the producer, 
 
 	```console
-	$ bash bin/kafka-console-producer.sh --broker-list $KAFKA_BROKERS_SASL 
-	--producer.config mykafka.properties --topic greetings
+	$ bash bin/kafka-console-producer.sh --broker-list $KAFKA_BROKERS_SASL --producer.config mykafka.properties --topic greetings
 	>
 	```
 
