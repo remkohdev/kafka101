@@ -96,3 +96,5 @@ To use the Admin API you need these full `kafka_admin_url` and the `apikey` from
 	"new_total_partition_count": 1
 	}'
 	```
+
+Go to [Lab05](../Lab05).
